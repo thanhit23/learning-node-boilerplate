@@ -55,8 +55,16 @@ if (config.env === 'production') {
   app.use('/v1/auth', authLimiter);
 }
 
+// default api routes
+app.get('/', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.end(JSON.stringify({ 'App Name': 'Multikart API' }));
+});
+
 // v1 api routes
 app.use('/v1', routes);
+
+// auth api routes
 app.use('/auth', authRoutes);
 
 // send back a 404 error for any unknown api request
